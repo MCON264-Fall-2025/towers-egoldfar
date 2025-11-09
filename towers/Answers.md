@@ -13,21 +13,29 @@ Each part reinforces a key concept of recursion — base case, recursive case, a
 ### 1. Base Case
 _Describe the base condition that stops recursion (for example, what happens when `n == 0`?)._
 
-> ✎ Your answer here
+> When there are 0 rings it takes no moves so that is the base case the method 
+> returns without doing anything.
 
 ### 2. Recursive Case
-_Explain the sequence of recursive calls and what each represents._
 
-> ✎ Your answer here
+> If there are more than 0 rings when the method is called it will
+> call the method for one ring less and tell it to move from the from pile to the 
+> aux pile. That ring will then move to the destination pile and then
+> call the method for 1 less and tell it to move from the aux to the
+> destination
 
 ### 3. Sample Trace (for n = 3)
 
-| Move # | From | To |
-|:--:|:--:|:--:|
-| 1 | A | C |
-| 2 | A | B |
-| 3 | C | B |
-| … |  |  |
+
+|  Move #  | Ring | From | To |
+|:--------:|:----:|:----:|:--:|
+|    1     |  1   |  A   | C  | 
+|    2     |  2   |  A   | B  |   
+|    3     |  1   |  C   | B  |
+|    4     |  3   |  A   | C  |
+|    5     |  1   |  B   | A  |
+|    6     |  2   |  B   | C  |
+|    7     |  1   |  A   | C  |
 
 _Total moves = 2ⁿ − 1 = 7 (for n = 3)_
 
@@ -38,23 +46,25 @@ _Total moves = 2ⁿ − 1 = 7 (for n = 3)_
 ### 1. Approach
 _How did you modify the standard recursion to count rather than print moves?_
 
->  Your answer here
+>  The method calls remained the same the change is that instead of printing
+> the move Ring x from A to B, I incremented the counter.
 
 ### 2. Verification of Formula
 _Complete the table and verify that count = 2ⁿ − 1._
 
 | n | Expected (2ⁿ − 1) | Program Output | Matches? (Y/N) |
-|:--:|:--:|:--:|:--:|
-| 1 | 1 |  |  |
-| 2 | 3 |  |  |
-| 3 | 7 |  |  |
-| 4 | 15 |  |  |
-| 5 | 31 |  |  |
+|:--:|:--:|:--------------:|:--------------:|
+| 1 | 1 |       1        |       Y        |
+| 2 | 3 |       3        |       Y        |
+| 3 | 7 |       7        |       Y        |
+| 4 | 15 |       15       |       Y        |
+| 5 | 31 |       31       |        Y       |
 
 ### 3. Reflection
 _What changes when you replace printed moves with a counter? What are the pros and cons?_
 
-> ✎ Your answer here
+> Just the action that is done in the method changes the calls remain the same. The downside is I
+now know how many moves it will take but I don't know what the moves are.
 
 ---
 
@@ -63,21 +73,25 @@ _What changes when you replace printed moves with a counter? What are the pros a
 ### 1. New Rule
 _Every move must pass through the middle peg. How does this alter the recursion?_
 
-> ✎ Your answer here
+> Each time the method is called it calls itself recursively 3 times not just two
+> The first call moves the tower from to the destination (when called it ensures each peg goes
+> through the middle on its own). Then current peg moves to middle. Then we move n-1 to start point,
+> current peg to goal, and n-1 back to destination.
 
 ### 2. Observed Move Counts
 
 | n | Expected ≈ 3ⁿ − 1 | Program Output | Matches? (Y/N) |
-|:--:|:--:|:--:|:--:|
-| 1 | 2 |  |  |
-| 2 | 8 |  |  |
-| 3 | 26 |  |  |
-| 4 | 80 |  |  |
+|:--:|:--:|:--------------:|:--------------:|
+| 1 | 2 |       2        |       Y        |
+| 2 | 8 |       8        |       Y        |
+| 3 | 26 |       26       |       Y        |
+| 4 | 80 |       80       |       Y        |
 
 ### 3. Analysis
 _Why does this variation grow faster than the standard version? How do additional move constraints affect complexity?_
 
-> ✎ Your answer here
+> Each time the method is called it calls itself recursively 3 times not just two that is why
+> it is 3ⁿ and not 2ⁿ.
 
 ---
 
